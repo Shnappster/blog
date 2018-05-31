@@ -7,7 +7,10 @@ use App\Post;
 class PostsController extends Controller
 {
     public function index() {
-        return view('posts.index');
+
+        $posts = Post::latest()->get();
+
+        return view('posts.index', compact('posts'));
     }
 
     public function create() {
@@ -26,4 +29,10 @@ class PostsController extends Controller
 
         return redirect('/');
     }
+
+    public function show(Post $post) {
+
+        return view('posts.show', compact('post'));
+    }
+
 }
