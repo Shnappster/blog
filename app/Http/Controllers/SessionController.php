@@ -8,7 +8,7 @@ class SessionController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest')->except('destroy');
+        $this->middleware('guest', ['except' => 'destroy']);
     }
 
     public function create()
@@ -19,7 +19,9 @@ class SessionController extends Controller
     public function store()
     {
         if (! auth()->attempt(request(['email', 'password']))) {
-            return back();
+            return back()->withErrors([
+                'message' => 'Check the entered data.'
+            ]);
         }
 
         return redirect()->home();
@@ -30,7 +32,7 @@ class SessionController extends Controller
     {
         auth()->logout();
 
-        return redirect('/');
+        return redirect('/login');
     }
 
 
