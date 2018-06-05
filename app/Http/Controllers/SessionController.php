@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 class SessionController extends Controller
 {
 
@@ -18,14 +17,13 @@ class SessionController extends Controller
 
     public function store()
     {
-        if (! auth()->attempt(request(['email', 'password']))) {
+        if (!auth()->attempt(request(['email', 'password']))) {
             return back()->withErrors([
                 'message' => 'Check the entered data.'
             ]);
         }
 
         return redirect()->home();
-
     }
 
     public function destroy()
@@ -34,6 +32,4 @@ class SessionController extends Controller
 
         return redirect('/login');
     }
-
-
 }

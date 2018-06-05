@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\Repositories\Posts;
+use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
@@ -13,22 +13,32 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Posts $posts) {
+    public function index(Request $request)
+    {
+        $month = $request->get('month');
+        $year = $request->get('year');
 
-        $posts = $posts->all();
+        $postsQuery = Post::query()->latest();
 
-//        $posts = Post::latest()
-//            ->filter(request(['month', 'year']))
-//            ->get();
+        if (!is_null($month) && !is_null($year)) {
+            $postsQuery->filter([
+                'month' => $month,
+                'year' => $year,
+            ]);
+        }
+
+        $posts = $postsQuery->get();
 
         return view('posts.index', compact('posts'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('posts.create');
     }
 
-    public function store() {
+    public function store()
+    {
 
         $this->validate(request(), [
             'title' => 'required|min:5',
@@ -43,7 +53,8 @@ class PostsController extends Controller
         return redirect('/');
     }
 
-    public function show(Post $post) {
+    public function show(Post $post)
+    {
 
         return view('posts.show', compact('post'));
     }

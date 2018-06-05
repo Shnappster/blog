@@ -12,7 +12,7 @@ class Welcome extends Mailable
 {
     use Queueable, SerializesModels;
 
-   public $user;
+    public $user;
 
     public function __construct(User $user)
     {
