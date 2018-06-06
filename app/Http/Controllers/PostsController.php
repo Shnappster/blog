@@ -27,7 +27,8 @@ class PostsController extends Controller
             ]);
         }
 
-        $posts = $postsQuery->get();
+        $posts = $postsQuery->paginate(4);
+
 
         return view('posts.index', compact('posts'));
     }

@@ -11,6 +11,5 @@
 
     <p>{{$post->body}}</p>
 
-
 </div><!-- /.blog-post -->
 
