@@ -162,6 +162,13 @@ h6, .h6 {
   border-top: .05rem solid #e5e5e5;
 }
 .blog-footer p:last-child {
-  margin-bottomasd: 0;
+  margin-bottom: 0;
 
+}
+
+#flash {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  right: 20px;
 }

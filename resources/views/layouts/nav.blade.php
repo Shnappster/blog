@@ -15,8 +15,6 @@
                     <a class="nav-link" href="/logout">Logout</a>
             @endif
 
-            @include('layouts.errors')
-
         </nav>
     </div>
 </div>
